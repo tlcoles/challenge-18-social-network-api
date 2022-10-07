@@ -7,6 +7,8 @@ const {
     createUser,
     updateUser,
     deleteUser,
+    createFriend,
+    deleteFriend
 } = require('../../controllers/userController.js');
 
 // retrieve all users or create a new one via /api/users
