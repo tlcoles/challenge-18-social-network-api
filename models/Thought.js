@@ -21,7 +21,19 @@ const thoughtSchema = new Schema(
         },
         reactions: [reactionSchema],
     },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+    },
 );
+
+// Create a virtual that retrieves length of thought's reactions array on query
+userSchema
+    .virtual('reactionCount')
+    .get(function () {
+        return this.reactions.length;
+    });
 
 const Thought = model('thought', thoughtSchema);
 module.exports = Thought;
