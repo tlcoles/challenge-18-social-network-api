@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+//! I am uncertain about getSingleUser because of this "a single user by its _id and populated thought and friend data"
 const {
     getUsers,
     getSingleUser,
