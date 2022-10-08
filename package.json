@@ -1,7 +1,7 @@
 {
   "name": "challenge-18-social-network-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "ESMT Coding Boot Camp – Challenge 18: Social Network Api",
   "main": "index.js",
   "scripts": {
     "start": "node index",
