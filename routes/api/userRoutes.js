@@ -12,7 +12,7 @@ const {
 } = require('../../controllers/userController.js');
 
 // retrieve all users or create a new one via /api/users
-router.router('/')
+router.route('/')
     .get(getUsers)
     .post(createUser);
 
