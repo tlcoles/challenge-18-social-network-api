@@ -1,5 +1,9 @@
 const { Schema, model } = require('mongoose');
 
+const thoughtSchema = require('./Thought');
+
+const reactionSchema = require('./Reaction');
+
 // Validate email. Source: https://thewebdev.info/2022/03/16/how-to-validate-email-syntax-with-mongoose/#:~:text=To%20validate%20email%20syntax%20with%20Mongoose%2C%20we%20can%20set%20the,%40%5Cw%2B(%5B%5C.
 const validateEmail = (email) => {
     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
