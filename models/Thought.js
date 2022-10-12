@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const userSchema = require('./User');
+
 const reactionSchema = require('./Reaction');
 
 const thoughtSchema = new Schema(
@@ -34,7 +34,7 @@ const thoughtSchema = new Schema(
 );
 
 // Create a virtual that retrieves length of thought's reactions array on query
-userSchema
+thoughtSchema
     .virtual('reactionCount')
     .get(function () {
         return this.reactions.length;
