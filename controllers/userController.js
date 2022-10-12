@@ -51,5 +51,21 @@ module.exports = {
             )
             .catch((error) => res.status(500).json(error));
     },
-    //! createFriend and deleteFriend
+    // Create user's friend
+    createFriend(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $addToSet: { friends: req.body} },
+            { runValidators: true, new: true }
+        )
+            .then((user) => 
+                !user
+                    ? res
+                        .status(404)
+                        .json( { message: 'No user found with that ID.' })
+                    : res.json(user)
+            )
+            .catch((error) => res.status(500).json(error));
+    },
+
 }
