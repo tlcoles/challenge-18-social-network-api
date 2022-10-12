@@ -7,4 +7,15 @@ module.exports = {
             .then((users) => res.json(users))
             .catch((error) => res.status(500).json(error));
     },
+    // Get single user by ID
+    getSingleUser(req, res) {
+        User.findOne({ _id: req.params.userID })
+        .select('-__v')
+        .then((user) => 
+        !user
+            ? res.status(404).json({ message: 'No user found matching that ID!'})
+            : res.json(user)
+            )
+            .catch((error) => res.status(500).json(error));
+    }
 }
