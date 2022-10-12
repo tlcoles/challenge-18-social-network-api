@@ -9,7 +9,7 @@ module.exports = {
     },
     // Get single user by ID
     getSingleUser(req, res) {
-        User.findOne({ _id: req.params.userID })
+        User.findOne({ _id: req.params.userId })
         .select('-__v')
         .then((user) => 
         !user
@@ -51,7 +51,7 @@ module.exports = {
             )
             .catch((error) => res.status(500).json(error));
     },
-    // Create user's friend
+    // Create a user's friend
     createFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
