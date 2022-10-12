@@ -17,5 +17,11 @@ module.exports = {
             : res.json(user)
             )
             .catch((error) => res.status(500).json(error));
-    }
+    },
+    // Create a user
+    createUser(req, res) {
+        User.create(req.body)
+            .then((user) => res.json(user))
+            .catch((error) => res.status(500).json(error));
+    },
 }
