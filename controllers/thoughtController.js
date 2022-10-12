@@ -18,4 +18,13 @@ module.exports = {
             )
             .catch((error) => res.status(500).json(error));
     },
+  // Create a thought
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((thought) => res.json(thought))
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
+  },
 }
