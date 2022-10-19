@@ -20,32 +20,28 @@ module.exports = {
     },
   // Create a thought
   createThought(req, res) {
-    User.findOneAndUpdate(
-        { _id: req.params.userId },
-        { $addToSet: { thoughts: req.body } },
-        { runValidators: true, new: true }
-    )
-        .then((user) =>
-            !user
-                ? res
-                    .status(404)
-                    .json({ message: 'No user found with that ID.' })
-            : res.json(user)
+    Thought.create(req.body)
+      .then((thought) => {
+        User.findOneAndUpdate(
+          { username: thought.username },
+          { $addToSet: { thoughts: thought._id } },
+          { runValidators: true, new: true }
         )
-        .catch((error) => res.status(500).json(error));
+          .then((user) =>
+            !user
+              ? res.status(404).json({ message: "No user found with that username." })
+              : res.json(thought)
+          )
+          .catch((error) => res.status(500).json(error));
+      })
   },
   // Delete a thought
   deleteThought(req, res) {
-    User.findOneAndUpdate(
-        { _id: req.params.userId },
-        { $pull: { thought: { thoughtId: req.params.thoughtId } }},
-        { runValidators: true, new: true }
-        )
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json(user)
-      )
+    Thought.findOneAndDelete(
+      { _id: req.params.thoughtId },
+      { runValidators: true, new: true }
+    )
+      .then(() => res.json({ message: "Thought deleted!" })) // ! Also remove thought from user??
       .catch((error) => res.status(500).json(error));
   },
   // Update a thought
