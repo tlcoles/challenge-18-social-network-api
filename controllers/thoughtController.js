@@ -20,6 +20,8 @@ module.exports = {
     },
   // Create a thought
   createThought(req, res) {
+    // optional: first check that user with userId exists and has the username given
+
     Thought.create(req.body)
       .then((thought) => {
         User.findOneAndUpdate(
@@ -60,11 +62,13 @@ module.exports = {
   },
     // Create a thought's reaction
     createReaction(req, res) {
-        Thought.findOneAndUpdate(
-            { _id: req.params.thoughtId },
-            { $addToSet: { reactions: req.body} },
-            { runValidators: true, new: true }
-        )
+        Reaction.create(req.body)
+        .then((reaction) => {
+            Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $addToSet: { reactions: reaction._id } },
+                { runValidators: true, new: true }
+            )
             .then((thought) => 
                 !thought
                     ? res
@@ -73,21 +77,16 @@ module.exports = {
                     : res.json(thought)
             )
             .catch((error) => res.status(500).json(error));
+        })
+
     },
     // Delete a thoughts's reaction
     deleteReaction(req, res) {
-        Thought.findOneAndUpdate(
-            { _id: req.params.thoughtId },
-            { $pull: { reaction: { reactionId: req.params.reactionId } } },
+        Reaction.findOneAndDelete(
+            { _id: req.params.reactionId },
             { runValidators: true, new: true }
         )
-            .then((thought) => 
-                !thought
-                    ? res
-                        .status(404)
-                        .json( { message: 'No thought found with that ID.' })
-                    : res.json(thought)
-            )
+            .then(() => res.json({ message: 'Reaction deleted!' }))
             .catch((error) => res.status(500).json(error));
     },
 }
