@@ -2,8 +2,8 @@
 An assignment of the ESMT Coding Boot Camp. The challenge is to build an API for a social network web application for users to share thoughts, reactions, and create friend connections. The exercise requires Express.js (Node.js), MongoDB, Mongoose ODM, and Insomnia. 
 
 ## Video walk-through
-![Video walk-through of API #1](https://www.loom.com/share/c816ef03c84b4536ad7d9851382c57a1)  
-![Video walk-through of API #](https://www.loom.com/share/3da064a624ba4566b0dc525d5331a300) 
+[! [Video walk-through of API #1](https://www.loom.com/share/c816ef03c84b4536ad7d9851382c57a1)]  
+[! [Video walk-through of API #2](https://www.loom.com/share/3da064a624ba4566b0dc525d5331a300)] 
 
 ## Special challenges
 * Learning and applying MongoDB schema
