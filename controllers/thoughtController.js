@@ -1,4 +1,4 @@
-const { User, Thought, Reaction } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
     // Get all thoughts
@@ -77,13 +77,18 @@ module.exports = {
             )
             .catch((error) => res.status(500).json(error));
     },
-    // Delete a thoughts's reaction
+    // Delete a thoughts's reaction (derived from exercise 25 code)
     deleteReaction(req, res) {
-        Reaction.findOneAndDelete(
-            { _id: req.params.reactionId },
-            { runValidators: true, new: true }
+        Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $pull: { reactions: { reactionId: req.params.reactionId } } },
+          { runValidators: true, new: true }
         )
-            .then(() => res.json({ message: 'Reaction deleted!' }))
-            .catch((error) => res.status(500).json(error));
+        .then((thought) =>
+              !thought
+                ? res.status(404).json({ message: 'No thought found with this ID.'})
+                : res.json(thought) 
+        )
+        .catch((error) => res.status(500).json(error));
     },
-}
+};

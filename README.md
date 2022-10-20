@@ -9,9 +9,10 @@ An assignment of the ESMT Coding Boot Camp. The challenge is to build an API for
 * Building API routes
 * Using Insomnia for route testing
 
+
 ## Gratitude
 * Tiffany Conroy and Morgan Roderick for personal tutoring and support
-* ESMT Coding Boot Camp teachers and tutors for instruction, resource suggestions, and support
+* ESMT Coding Boot Camp instructor, tutors, and personnel for instruction, resource suggestions, and support
 * Study buddies Henriette and Tornike 
 
 ## Contact
