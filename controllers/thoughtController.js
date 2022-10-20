@@ -63,13 +63,11 @@ module.exports = {
 
     // Create a thought's reaction
     createReaction(req, res) {
-        Reaction.create(req.body)
-          .then((reaction) => {
-            Thought.findOneAndUpdate(
-                { _id: req.params.thoughtId },
-                { $addToSet: { reactions: reaction._id } },
-                { runValidators: true, new: true }
-            )
+      Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $push: { reactions: req.body } },
+          { runValidators: true, new: true }
+          )
             .then((thought) => 
                 !thought
                     ? res
@@ -78,8 +76,6 @@ module.exports = {
                     : res.json(thought)
             )
             .catch((error) => res.status(500).json(error));
-        })
-
     },
     // Delete a thoughts's reaction
     deleteReaction(req, res) {
