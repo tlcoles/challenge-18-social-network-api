@@ -1,4 +1,5 @@
-# Third-Party APIs Challenge: Work Day Scheduler
+# NoSQL Challenge: Social Network API
+
 An assignment of the ESMT Coding Boot Camp. The challenge is to build an API for a social network web application for users to share thoughts, reactions, and create friend connections. The exercise requires Express.js (Node.js), MongoDB, Mongoose ODM, and Insomnia. 
 
 ## Video walk-through
